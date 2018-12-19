@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.0" tiledversion="1.1.5" orientation="orthogonal" renderorder="right-down" width="100" height="10" tilewidth="64" tileheight="64" infinite="0" nextobjectid="17">
+ <tileset firstgid="1" name="tile" tilewidth="64" tileheight="64" tilecount="60" columns="10">
+  <image source="tile.png" width="640" height="384"/>
+ </tileset>
+ <layer name="ground" width="100" height="10">
+  <data encoding="base64" compression="zlib">
+   eJztj7sKwkAQRaPGymjAZwRNGcVKxcr4/9/labbbXXbCQFacA6cZhpl7i8IwDOP/WOMGt2MHETIk9y90PeEZ27GDCBmSO6euE5x65h1e8Kp8O/QvxgxLnCfsSnK7LBpdtVhg5Znf8YFP5duhfzGWuMI6YVeS22XR6KrFDvee+Rt7/CjfDv2LccAGjwm7ktwui0ZXHzczK19mVn4BNJQtJg==
+  </data>
+ </layer>
+ <objectgroup name="heart">
+  <object id="1" x="452" y="212" width="40" height="48"/>
+  <object id="2" x="720" y="168" width="60" height="40"/>
+  <object id="3" x="1788" y="276" width="72" height="60"/>
+  <object id="4" x="1176" y="88" width="44" height="52"/>
+  <object id="7" x="3052" y="168" width="64" height="56"/>
+  <object id="8" x="3708" y="60" width="52" height="76"/>
+ </objectgroup>
+ <objectgroup name="airship">
+  <object id="9" x="2404" y="28" width="80" height="36">
+   <ellipse/>
+  </object>
+  <object id="10" x="4612" y="68" width="156" height="48">
+   <ellipse/>
+  </object>
+  <object id="11" x="3372" y="44" width="164" height="84">
+   <ellipse/>
+  </object>
+ </objectgroup>
+ <objectgroup name="bird">
+  <object id="12" x="3832" y="164" width="24" height="20"/>
+  <object id="13" x="4208" y="56" width="32" height="32"/>
+  <object id="14" x="2048" y="188" width="36" height="32"/>
+  <object id="15" x="1824" y="52" width="44" height="32"/>
+  <object id="16" x="1484" y="368" width="60" height="32"/>
+ </objectgroup>
+</map>

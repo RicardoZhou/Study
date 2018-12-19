@@ -1,0 +1,8 @@
+fly/cocos2d
+fly/proj.android
+fly/proj.android-studio
+fly/proj.ios_mac
+fly/proj.linux
+fly/proj.win32
+fly/.cocos-project.json
+fly/CMakeLists.txt
