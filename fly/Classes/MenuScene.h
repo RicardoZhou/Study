@@ -3,10 +3,10 @@
 #include "cocos2d.h"
 #include "ui/CocosGUI.h"
 
-//ÃüÃû¿Õ¼ä
+//å‘½åç©ºé—´
 USING_NS_CC;
 
-//ButtonµÄÃüÃû¿Õ¼ä
+//Buttonçš„å‘½åç©ºé—´
 using namespace ui;
 
 class MenuScene : public Layer {
@@ -15,7 +15,7 @@ public:
 	virtual bool init();
 	CREATE_FUNC(MenuScene);
 
-	//°´Å¥´¦Àíº¯Êı
+	//æŒ‰é’®å¤„ç†å‡½æ•°
 	void touchEvent(Ref* sender, Widget::TouchEventType type);
 };
 

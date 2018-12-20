@@ -4,7 +4,7 @@ bool BgLayer::init() {
 	if (!Layer::init())
 		return false;
 
-	//´´½¨3²ã±³¾°
+	//åˆ›å»º3å±‚èƒŒæ™¯
 	createBackgrounds();
 
 	return true;
@@ -12,13 +12,13 @@ bool BgLayer::init() {
 
 void BgLayer::createBackgrounds() {
 	auto size = Director::getInstance()->getVisibleSize();
-	//´´½¨Ò»¸ö¼«Ô¶µÄ±³¾°
+	//åˆ›å»ºä¸€ä¸ªæžè¿œçš„èƒŒæ™¯
 	auto bg1Sprite = Sprite::create("bj1.jpg");
 	bg1Sprite->setPosition(size.width * 0.5, size.height * 0.5);
 	addChild(bg1Sprite);
 	bg1Sprite->setZOrder(-4);
 
-	//´´½¨Ò»¸ö¼«Ô¶µÄ±³¾°
+	//åˆ›å»ºä¸€ä¸ªæžè¿œçš„èƒŒæ™¯
 	auto farBg1 = Sprite::create("bj2.png");
 	auto farBg2 = Sprite::create("bj2.png");
 	this->farBackground.push_back(farBg1);
@@ -32,7 +32,7 @@ void BgLayer::createBackgrounds() {
 	addChild(farBg1);
 	addChild(farBg2);
 
-	//Ìí¼ÓÒ»¸ö½Ï½üµÄ±³¾°
+	//æ·»åŠ ä¸€ä¸ªè¾ƒè¿‘çš„èƒŒæ™¯
 	auto nearBg1 = Sprite::create("bj3.png");
 	auto nearBg2 = Sprite::create("bj3.png");
 	this->nearBackground.push_back(nearBg1);
@@ -46,7 +46,7 @@ void BgLayer::createBackgrounds() {
 	addChild(nearBg1);
 	addChild(nearBg2);
 
-	//Ìí¼ÓµØÍ¼
+	//æ·»åŠ åœ°å›¾
 	this->map = TMXTiledMap::create("map.tmx");
 	map->setAnchorPoint(Vec2::ZERO);
 	map->setPosition(Vec2::ZERO);
@@ -56,7 +56,7 @@ void BgLayer::createBackgrounds() {
 }
 
 void BgLayer::update(float dt) {
-	//±È½ÏÔ¶µÄ±³¾°
+	//æ¯”è¾ƒè¿œçš„èƒŒæ™¯
 	Sprite* sprite1 = this->farBackground[0];
 	Sprite* sprite2 = this->farBackground[1];
 
@@ -72,7 +72,7 @@ void BgLayer::update(float dt) {
 	sprite1->setPositionX(newPosX1);
 	sprite2->setPositionX(newPosX2);
 
-	//±È½Ï½üµÄ±³¾°
+	//æ¯”è¾ƒè¿‘çš„èƒŒæ™¯
 	sprite1 = this->nearBackground[0];
 	sprite2 = this->nearBackground[1];
 
@@ -88,14 +88,14 @@ void BgLayer::update(float dt) {
 	sprite1->setPositionX(newPosX1);
 	sprite2->setPositionX(newPosX2);
 
-	//Ìí¼ÓµØÍ¼
+	//æ·»åŠ åœ°å›¾
 	auto size = Director::getInstance()->getVisibleSize();
 	speed = 130;
 	float newPosX = map->getPositionX() - speed * dt;
 	if (newPosX <= size.width - map->getContentSize().width)
 	{
 		log("game end!!!");
-		this->unscheduleUpdate();//È¡ÏûÊ±¼äµ÷¶È
+		this->unscheduleUpdate();//å–æ¶ˆæ—¶é—´è°ƒåº¦
 	}
 
 	map->setPositionX(newPosX);

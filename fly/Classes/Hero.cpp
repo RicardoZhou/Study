@@ -8,15 +8,45 @@ bool Hero::init() {
 	this->hero->setPosition(Vec2::ZERO);
 	addChild(this->hero);
 
-	//Ìí¼ÓÒ»¸ö¸ÕÌå
+	//æ·»åŠ ä¸€ä¸ªåˆšä½“
 	auto heroBody = PhysicsBody::createBox(
-		//¸ÕÌåÏëĞÎ×´
+		//åˆšä½“æƒ³å½¢çŠ¶
 		this->getContentSize(),
-		//¸ÕÌåµÄÎïÀíÌØĞÔ(ÃÜ¶È£¬µ¯ĞÔÏµÊı£¬Ä¦²ÁÁ¦)
+		//åˆšä½“çš„ç‰©ç†ç‰¹æ€§(å¯†åº¦ï¼Œå¼¹æ€§ç³»æ•°ï¼Œæ‘©æ“¦åŠ›)
 		PhysicsMaterial(10, 0.1, 0.1)
 	);
-	//°ÑÎïÀíÊÀ½çµÄ¸ÕÌå¶ÔÏóºÍÓÎÏ·ÊÀ½çÖĞµÄ×é¼ş¹ØÁªÆğÀ´
-	//ÎÒÃÇ°ÑÕâ¸ö¸ÕÌå¶ÔÏóºÍÕâ¸öNode¶ÔÏó¹ØÁª£¬¶ø²»ÊÇNodeÖĞµÄ×Ó½ÚµãHero¶ÔÏó
+	//æŠŠç‰©ç†ä¸–ç•Œçš„åˆšä½“å¯¹è±¡å’Œæ¸¸æˆä¸–ç•Œä¸­çš„ç»„ä»¶å…³è”èµ·æ¥
+	//æˆ‘ä»¬æŠŠè¿™ä¸ªåˆšä½“å¯¹è±¡å’Œè¿™ä¸ªNodeå¯¹è±¡å…³è”ï¼Œè€Œä¸æ˜¯Nodeä¸­çš„å­èŠ‚ç‚¹Heroå¯¹è±¡
 	this->setPhysicsBody(heroBody);
+
+	//åˆå§‹åŒ–åŠ¨ç”»ç¼“å­˜
+	initAnimationCach();
+
 	return true;
+}
+
+void Hero::initAnimationCach() {
+	//auto sprite = Sprite::create();
+	//auto frame = sprite->getSpriteFrame();
+	//Vector<SpriteFrame*> frames;
+	//auto animation = Animation::createWithSpriteFrames(å¤šä¸ªç²¾çµå¸§åºåˆ— framesï¼Œæ¯å¸§çš„å»¶æ—¶);
+	//AnimationCache::getInstance()->addAnimation(åŠ¨ç”» animationï¼ŒåŠ¨ç”»åç§°);
+
+	//é£è¡Œï¼Œä¸‹é™ï¼Œæ­»äº¡
+	const int size = 3;
+	int frameSize[size] = { 4, 3, 4 };
+	std::string prefix[size] = { "flying", "draw", "die" };
+	for (int k = 0; k < size; k++) {
+		Vector<SpriteFrame*> spriteFrame;
+		for (int i = 1; i <= frameSize[k]; i++) {
+			std::stringstream ss;
+			ss << prefix[k] << i << ".png";
+			auto sprite = Sprite::create(ss.str());
+			auto frame = sprite->getSpriteFrame();
+			spriteFrame.pushBack(frame);
+		}
+		auto animation = Animation::createWithSpriteFrames(spriteFrame, 0.1);
+		AnimationCache::getInstance()->addAnimation(animation, prefix[k]);
+	}
+	Vector<SpriteFrame*> frames;
 }

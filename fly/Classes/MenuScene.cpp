@@ -15,7 +15,7 @@ bool MenuScene::init() {
 
 	auto size = Director::getInstance()->getVisibleSize();
 
-	//´´½¨Ò»¸ö¾«Áé£¬ÓÃÀ´±íÊ¾¡°±³¾°¡±
+	//åˆ›å»ºä¸€ä¸ªç²¾çµï¼Œç”¨æ¥è¡¨ç¤ºâ€œèƒŒæ™¯â€
 	auto bg = Sprite::create("main.jpg");
 
 	this->addChild(bg);
@@ -23,7 +23,7 @@ bool MenuScene::init() {
 	bg->setAnchorPoint(Vec2(0, 0));
 	bg->setPosition(Vec2(0, 0));
 
-	//Ìí¼Ó±êÌâÍ¼Æ¬
+	//æ·»åŠ æ ‡é¢˜å›¾ç‰‡
 	auto title = Sprite::create("title.png");
 	title->setPosition(Vec2(size.width*0.75, size.height*0.5));
 	this->addChild(title);
@@ -34,24 +34,24 @@ bool MenuScene::init() {
 	auto repeat = RepeatForever::create(sequence);
 	title->runAction(repeat);
 
-	//Ìí¼ÓÆô¶¯ÓÎÏ·µÄ°´Å¥
+	//æ·»åŠ å¯åŠ¨æ¸¸æˆçš„æŒ‰é’®
 	auto btn = Button::create("start11.png", "start2.png");
 	this->addChild(btn);
 	btn->setPosition(Vec2(size.width / 4, size.height / 2));
-	//°´Å¥´¦Àíº¯Êý
+	//æŒ‰é’®å¤„ç†å‡½æ•°
 	btn->addTouchEventListener(CC_CALLBACK_2(MenuScene::touchEvent, this));
 
 
 	return true;
 }
 
-//°´Å¥´¦Àíº¯Êý
+//æŒ‰é’®å¤„ç†å‡½æ•°
 void MenuScene::touchEvent(Ref* sender, Widget::TouchEventType type) {
 	switch (type) {
 	case Widget::TouchEventType::ENDED:
 		{
 			auto gameScene = GameScene::createScene();
-			//ÐÂ³¡¾°´ÓÉÏÏòÏÂÔÈËÙÒÆ¶¯£¬Ö±µ½¸²¸ÇÔ­³¡¾°
+			//æ–°åœºæ™¯ä»Žä¸Šå‘ä¸‹åŒ€é€Ÿç§»åŠ¨ï¼Œç›´åˆ°è¦†ç›–åŽŸåœºæ™¯
 			auto destScene = TransitionMoveInT::create(2, gameScene);
 			Director::getInstance()->pushScene(destScene);
 		}

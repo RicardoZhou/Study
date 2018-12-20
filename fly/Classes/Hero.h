@@ -8,6 +8,8 @@ class Hero : public Node {
 public:
 	CREATE_FUNC(Hero);
 	virtual bool init();
+
+	void initAnimationCach();
 private:
 	Sprite *hero;
 };

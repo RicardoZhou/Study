@@ -5,10 +5,10 @@ Scene* GameScene::createScene() {
 	//auto scene = Scene::create();
 	auto scene = Scene::createWithPhysics();
 
-	//ÉèÖÃÎïÀíÊÀ½çµÄµ÷ÊÔ·¶Î§£¬ÓÃºìÉ«ÏßÌõ±íÊ¾£¬½öÓÃÓÚµ÷ÊÔ£¬·¢²¼ÓÎÏ·Ê±ÒòÉ¾³ı
+	//è®¾ç½®ç‰©ç†ä¸–ç•Œçš„è°ƒè¯•èŒƒå›´ï¼Œç”¨çº¢è‰²çº¿æ¡è¡¨ç¤ºï¼Œä»…ç”¨äºè°ƒè¯•ï¼Œå‘å¸ƒæ¸¸æˆæ—¶å› åˆ é™¤
 	scene->getPhysicsWorld()->setDebugDrawMask(PhysicsWorld::DEBUGDRAW_ALL);
 
-	//ÉèÖÃÖØÁ¦µÄ´óĞ¡ÒÔ¼°·½Ïò
+	//è®¾ç½®é‡åŠ›çš„å¤§å°ä»¥åŠæ–¹å‘
 	scene->getPhysicsWorld()->setGravity(Vec2(0, -98));
 
 
@@ -23,7 +23,7 @@ bool GameScene::init() {
 		return false;
 	}
 
-	//Ìí¼Ó±³¾°²ã
+	//æ·»åŠ èƒŒæ™¯å±‚
 	bgLayer = BgLayer::create();
 	addChild(bgLayer);
 

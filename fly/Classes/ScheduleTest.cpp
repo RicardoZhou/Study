@@ -19,16 +19,16 @@ bool ScheduleTest::init() {
 	layer->ignoreAnchorPointForPosition(false);
 	layer->setPosition(Vec2(0, size.height / 2));
 
-	//启动时间调度
+	//鍚姩鏃堕棿璋冨害
 	this->scheduleUpdate();
 
 	return true;
 }
 
 void ScheduleTest::update(float dt) {
-	//dt表示距离上一次调用update的时间间隔，单位是秒
+	//dt琛ㄧず璺濈涓婁竴娆¤皟鐢╱pdate鐨勬椂闂撮棿闅旓紝鍗曚綅鏄
 	auto size = Director::getInstance()->getVisibleSize();
-	int speed = 200;//每秒移动200像素
+	int speed = 200;//姣忕绉诲姩200鍍忕礌
 	float offset = speed * dt;
 	auto newPositionX = this->getPositionX() + offset;
 	if (newPositionX > size.width) {
