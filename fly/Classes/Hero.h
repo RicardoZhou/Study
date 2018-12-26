@@ -10,6 +10,10 @@ public:
 	virtual bool init();
 
 	void initAnimationCach();
+
+	void fly();
+	void drop();
+	void die();
 private:
 	Sprite *hero;
 };

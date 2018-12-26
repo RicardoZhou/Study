@@ -35,7 +35,7 @@ void Hero::initAnimationCach() {
 	//飞行，下降，死亡
 	const int size = 3;
 	int frameSize[size] = { 4, 3, 4 };
-	char* prefix[size] = { "flying", "draw", "die" };
+	char* prefix[size] = { "flying", "drop", "die" };
 	for (int k = 0; k < size; k++) {
 		Vector<SpriteFrame*> spriteFrame;
 		for (int i = 1; i <= frameSize[k]; i++) {
@@ -49,4 +49,32 @@ void Hero::initAnimationCach() {
 		AnimationCache::getInstance()->addAnimation(animation, prefix[k]);
 	}
 	Vector<SpriteFrame*> frames;
+}
+
+void Hero::fly() {
+	//停止当前的所有动作
+	hero->stopAllActions();
+	//准备从动画缓存中获取动画
+	auto cache = AnimationCache::getInstance();
+	//从动画缓存中获取指定动画
+	auto animation = cache->getAnimation("flying");
+	//根据"动画"来创建一个"动画动作"(Animation)
+	auto animate = Animate::create(animation);
+	//创建一个永久循环动作
+	auto repeatAct = RepeatForever::create(animate);
+	//让指定结点来执行这个动作
+	hero->runAction(repeatAct);
+}
+
+void Hero::drop() {
+	hero->stopAllActions();
+	auto animate = Animate::create(AnimationCache::getInstance()->getAnimation("drop"));
+	auto repeatAct = RepeatForever::create(animate);
+	hero->runAction(repeatAct);
+}
+
+void Hero::die() {
+	hero->stopAllActions();
+	auto animate = Animate::create(AnimationCache::getInstance()->getAnimation("die"));
+	hero->runAction(animate);
 }
