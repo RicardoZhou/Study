@@ -35,13 +35,13 @@ void Hero::initAnimationCach() {
 	//飞行，下降，死亡
 	const int size = 3;
 	int frameSize[size] = { 4, 3, 4 };
-	std::string prefix[size] = { "flying", "draw", "die" };
+	char* prefix[size] = { "flying", "draw", "die" };
 	for (int k = 0; k < size; k++) {
 		Vector<SpriteFrame*> spriteFrame;
 		for (int i = 1; i <= frameSize[k]; i++) {
-			std::stringstream ss;
-			ss << prefix[k] << i << ".png";
-			auto sprite = Sprite::create(ss.str());
+			char fileName[32];
+			sprintf(fileName, "%s%d.png", prefix[k], i);
+			auto sprite = Sprite::create(fileName);
 			auto frame = sprite->getSpriteFrame();
 			spriteFrame.pushBack(frame);
 		}
