@@ -52,7 +52,8 @@ void BgLayer::createBackgrounds() {
 	map->setPosition(Vec2::ZERO);
 	addChild(map, -1);// => addChild, setZOrder(-1)
 
-	this->scheduleUpdate();
+	//背景最开始不滚动
+	//this->scheduleUpdate();
 }
 
 void BgLayer::update(float dt) {
@@ -99,4 +100,8 @@ void BgLayer::update(float dt) {
 	}
 
 	map->setPositionX(newPosX);
+}
+
+void BgLayer::startScroll() {
+	this->scheduleUpdate();
 }

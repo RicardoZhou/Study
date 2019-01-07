@@ -22,6 +22,9 @@ bool Hero::init() {
 	//初始化动画缓存
 	initAnimationCach();
 
+	//最开始时，让Hero重力无效
+	this->getPhysicsBody()->setGravityEnable(false);
+
 	return true;
 }
 

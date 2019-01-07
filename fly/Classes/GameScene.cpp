@@ -23,9 +23,45 @@ bool GameScene::init() {
 		return false;
 	}
 
+	auto size = Director::getInstance()->getVisibleSize();
+
 	//添加背景层
 	bgLayer = BgLayer::create();
 	addChild(bgLayer);
 
+	//添加Hero
+	hero = Hero::create();
+	addChild(hero);
+	hero->setPosition(Vec2(-30, size.height * 2 / 3));
+
+	heroComeIn();
+
 	return true;
 };
+
+void GameScene::heroComeIn() {
+	//启动飞行模式
+	hero->fly();
+
+	auto size = Director::getInstance()->getVisibleSize();
+	auto moveAct = MoveTo::create(4, Vec2(size.width / 2, size.height * 2 / 3));
+
+	//创建一个函数动作
+	auto callFunc = CallFunc::create(CC_CALLBACK_0(GameScene::heroStartDrop, this));
+
+	//创建一个顺序执行的动作
+	auto sequence = Sequence::create(moveAct, callFunc, NULL);
+
+	hero->runAction(sequence);
+}
+
+void GameScene::heroStartDrop() {
+	//让屏幕滚动
+	bgLayer->startScroll();
+
+	//让Hero的重力有效
+	hero->getPhysicsBody()->setGravityEnable(true);
+
+	//启动drop动画
+	hero->drop();
+}
