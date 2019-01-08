@@ -54,6 +54,21 @@ void BgLayer::createBackgrounds() {
 
 	//背景最开始不滚动
 	//this->scheduleUpdate();
+
+	//添加天空的边界（天花板），地面
+	auto groundHeight = map->getContentSize().height * 0.19;
+	auto skyHeight = map->getContentSize().height * 0.9;
+	auto width = map->getContentSize().width;
+
+	auto groundBody = PhysicsBody::createEdgeSegment(Vec2(0, groundHeight), Vec2(width, groundHeight));
+	auto groundNode = Node::create();
+	addChild(groundNode);
+	groundNode->setPhysicsBody(groundBody);
+
+	auto skyBody = PhysicsBody::createEdgeSegment(Vec2(0, skyHeight), Vec2(width, skyHeight));
+	auto skyNode = Node::create();
+	addChild(skyNode);
+	skyNode->setPhysicsBody(skyBody);
 }
 
 void BgLayer::update(float dt) {
