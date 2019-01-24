@@ -11,6 +11,7 @@ public:
 	void createBackgrounds();
 	void update(float dt);
 	void startScroll();
+	void addHearts();
 private:
 	std::vector<Sprite*> farBackground;
 	std::vector<Sprite*> nearBackground;

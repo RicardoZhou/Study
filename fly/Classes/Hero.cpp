@@ -10,8 +10,8 @@ bool Hero::init() {
 
 	//添加一个刚体
 	auto heroBody = PhysicsBody::createBox(
-		//刚体想形状
-		this->getContentSize(),
+		//刚体的形状
+		hero->getContentSize(),
 		//刚体的物理特性(密度，弹性系数，摩擦力)
 		PhysicsMaterial(10, 0.1, 0.1)
 	);

@@ -1,4 +1,5 @@
 #include "BgLayer.h"
+#include "Heart.h"
 
 bool BgLayer::init() {
 	if (!Layer::init())
@@ -6,6 +7,9 @@ bool BgLayer::init() {
 
 	//创建3层背景
 	createBackgrounds();
+
+	//创建奖品
+	addHearts();
 
 	return true;
 }
@@ -58,7 +62,7 @@ void BgLayer::createBackgrounds() {
 	//添加天空的边界（天花板），地面
 	auto groundHeight = map->getContentSize().height * 0.19;
 	auto skyHeight = map->getContentSize().height * 0.9;
-	auto width = map->getContentSize().width;
+	auto width = size.width;//map->getContentSize().width;	天空地面不需要移动，所以仅需屏幕宽度
 
 	auto groundBody = PhysicsBody::createEdgeSegment(Vec2(0, groundHeight), Vec2(width, groundHeight));
 	auto groundNode = Node::create();
@@ -119,4 +123,18 @@ void BgLayer::update(float dt) {
 
 void BgLayer::startScroll() {
 	this->scheduleUpdate();
+}
+
+void BgLayer::addHearts() {
+	auto hearts = map->getObjectGroup("heart")->getObjects();
+
+	for (auto object : hearts) {
+		auto heartObject = object.asValueMap();
+		auto x = heartObject["x"].asFloat();
+		auto y = heartObject["y"].asFloat();
+
+		auto heart = Heart::create();
+		heart->setPosition(x, y);
+		map->addChild(heart);
+	}
 }
