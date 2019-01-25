@@ -12,6 +12,8 @@ public:
 	void update(float dt);
 	void startScroll();
 	void addHearts();
+	void addAirShips();
+	void addBirds();
 private:
 	std::vector<Sprite*> farBackground;
 	std::vector<Sprite*> nearBackground;

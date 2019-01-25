@@ -1,5 +1,7 @@
 #include "BgLayer.h"
 #include "Heart.h"
+#include "AirShip.h"
+#include "Bird.h"
 
 bool BgLayer::init() {
 	if (!Layer::init())
@@ -10,6 +12,10 @@ bool BgLayer::init() {
 
 	//创建奖品
 	addHearts();
+	//创建飞船
+	addAirShips();
+	//创建飞鸟
+	addBirds();
 
 	return true;
 }
@@ -136,5 +142,33 @@ void BgLayer::addHearts() {
 		auto heart = Heart::create();
 		heart->setPosition(x, y);
 		map->addChild(heart);
+	}
+}
+
+void BgLayer::addAirShips() {
+	auto objs = map->getObjectGroup("airship")->getObjects();
+
+	for (auto object : objs) {
+		auto obj = object.asValueMap();
+		auto x = obj["x"].asFloat();
+		auto y = obj["y"].asFloat();
+
+		auto ship = AirShip::create();
+		ship->setPosition(x, y);
+		map->addChild(ship);
+	}
+}
+
+void BgLayer::addBirds() {
+	auto objs = map->getObjectGroup("bird")->getObjects();
+
+	for (auto object : objs) {
+		auto obj = object.asValueMap();
+		auto x = obj["x"].asFloat();
+		auto y = obj["y"].asFloat();
+
+		auto bird = Bird::create();
+		bird->setPosition(x, y);
+		map->addChild(bird);
 	}
 }
