@@ -21,8 +21,10 @@ private:
 	std::vector<Sprite*> farBackground;
 	std::vector<Sprite*> nearBackground;
 	TMXTiledMap *map;
+	std::vector<Node*> birds;
 
 	void addObject(std::string name, CreateObjectFunc func);
+	void addBirdVelocity();
 };
 
 #endif // !_BGLAYER_H_

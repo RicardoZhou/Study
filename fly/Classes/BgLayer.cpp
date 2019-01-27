@@ -128,6 +128,8 @@ void BgLayer::update(float dt) {
 	}
 
 	map->setPositionX(newPosX);
+
+	addBirdVelocity();
 }
 
 void BgLayer::startScroll() {
@@ -186,8 +188,34 @@ void BgLayer::addObject(std::string name, CreateObjectFunc func) {
 		auto x = obj["x"].asFloat();
 		auto y = obj["y"].asFloat();
 
-		auto bird = func();
-		bird->setPosition(x, y);
-		map->addChild(bird);
+		auto node = func();
+		node->setPosition(x, y);
+		map->addChild(node);
+
+		if (!strcmp(name.c_str(), "bird")) {
+			birds.push_back(node);
+		}
+	}
+}
+
+void BgLayer::addBirdVelocity() {
+	struct timeval curTime;
+	gettimeofday(&curTime, NULL);
+	unsigned int seed = curTime.tv_sec * 1000 + curTime.tv_usec / 1000;
+	srand(seed);
+
+	auto width = Director::getInstance()->getVisibleSize().width;
+	for (auto it = birds.begin(); it != birds.end();) {
+		Node* bird = *it;
+		if (bird->getPositionX() + map->getPositionX() < width) {
+			if (bird->getPhysicsBody()->getVelocity().x == 0) {
+				bird->getPhysicsBody()->setVelocity(Vec2(-80, random(-20, 40)));
+				it++;
+			} else {
+				it = birds.erase(it);
+			}
+		} else {
+			it++;
+		}
 	}
 }
