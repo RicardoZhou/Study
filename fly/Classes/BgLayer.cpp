@@ -11,11 +11,14 @@ bool BgLayer::init() {
 	createBackgrounds();
 
 	//创建奖品
-	addHearts();
+	//addHearts();
+	addObject("heart", (CreateObjectFunc)Heart::create);
 	//创建飞船
-	addAirShips();
+	//addAirShips();
+	addObject("airship", (CreateObjectFunc)AirShip::create);
 	//创建飞鸟
-	addBirds();
+	//addBirds();
+	addObject("bird", (CreateObjectFunc)Bird::create);
 
 	return true;
 }
@@ -131,6 +134,7 @@ void BgLayer::startScroll() {
 	this->scheduleUpdate();
 }
 
+/*
 void BgLayer::addHearts() {
 	auto hearts = map->getObjectGroup("heart")->getObjects();
 
@@ -168,6 +172,21 @@ void BgLayer::addBirds() {
 		auto y = obj["y"].asFloat();
 
 		auto bird = Bird::create();
+		bird->setPosition(x, y);
+		map->addChild(bird);
+	}
+}
+*/
+
+void BgLayer::addObject(std::string name, CreateObjectFunc func) {
+	auto objs = map->getObjectGroup(name)->getObjects();
+
+	for (auto object : objs) {
+		auto obj = object.asValueMap();
+		auto x = obj["x"].asFloat();
+		auto y = obj["y"].asFloat();
+
+		auto bird = func();
 		bird->setPosition(x, y);
 		map->addChild(bird);
 	}
