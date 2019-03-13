@@ -14,11 +14,6 @@ public:
 	CREATE_FUNC(GameScene);
 	void heroComeIn();
 	void heroStartDrop();
-
-	//Åö×²»Øµ÷º¯Êý
-	bool onContactBegin(PhysicsContact& contact);
-	bool onContactPreSolve(PhysicsContact& contact, PhysicsContactPreSolve& solve);
-	void onContactSeparate(PhysicsContact& contact);
 private:
 	BgLayer* bgLayer;
 	Hero* hero;

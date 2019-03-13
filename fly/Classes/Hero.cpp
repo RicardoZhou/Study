@@ -25,11 +25,6 @@ bool Hero::init() {
 	//最开始时，让Hero重力无效
 	this->getPhysicsBody()->setGravityEnable(false);
 
-	//碰撞检测相关的掩码
-	heroBody->setCategoryBitmask(0x20);
-	heroBody->setCollisionBitmask(0x1F);
-	heroBody->setContactTestBitmask(0x1E);
-
 	return true;
 }
 

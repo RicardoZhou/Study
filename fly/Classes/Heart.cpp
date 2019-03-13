@@ -13,10 +13,5 @@ bool Heart::init() {
 	this->setPhysicsBody(heartBody);
 	this->getPhysicsBody()->setGravityEnable(false);
 
-	//碰撞检测相关的掩码
-	heartBody->setCategoryBitmask(0x10);
-	heartBody->setCollisionBitmask(0x36);
-	heartBody->setContactTestBitmask(0x20);
-
 	return true;
 }
