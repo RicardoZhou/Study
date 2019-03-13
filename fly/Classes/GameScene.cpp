@@ -36,6 +36,17 @@ bool GameScene::init() {
 
 	heroComeIn();
 
+	//碰撞事件以及回调函数
+	//1.创建一个物理引擎的碰撞事件监听器
+	auto contactListener = EventListenerPhysicsContact::create();
+	//2.配置相关的回调函数(事件处理函数)
+	contactListener->onContactBegin = CC_CALLBACK_1(GameScene::onContactBegin, this);
+	contactListener->onContactPreSolve = CC_CALLBACK_2(GameScene::onContactPreSolve, this);
+	contactListener->onContactSeparate = CC_CALLBACK_1(GameScene::onContactSeparate, this);
+	//3.添加物理引擎的碰撞事件监听器
+	auto dispatcher = Director::getInstance()->getEventDispatcher();
+	dispatcher->addEventListenerWithSceneGraphPriority(contactListener, this);
+
 	return true;
 };
 
@@ -64,4 +75,18 @@ void GameScene::heroStartDrop() {
 
 	//启动drop动画
 	hero->drop();
+}
+
+bool GameScene::onContactBegin(PhysicsContact& contact) {
+	log("onContactBegin");
+	return true;
+}
+
+bool GameScene::onContactPreSolve(PhysicsContact& contact, PhysicsContactPreSolve& solve) {
+	log("onContactPreSolve");
+	return true;
+}
+
+void GameScene::onContactSeparate(PhysicsContact& contact) {
+	log("onContactSeparate");
 }
