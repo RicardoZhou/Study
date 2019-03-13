@@ -82,6 +82,14 @@ void BgLayer::createBackgrounds() {
 	auto skyNode = Node::create();
 	addChild(skyNode);
 	skyNode->setPhysicsBody(skyBody);
+
+	//碰撞检测相关的掩码
+	groundBody->setCategoryBitmask(0x02);
+	groundBody->setCollisionBitmask(0x3C);
+	groundBody->setContactTestBitmask(0x20);
+	skyBody->setCategoryBitmask(0x01);
+	skyBody->setCollisionBitmask(0x20);
+	skyBody->setContactTestBitmask(0x00);
 }
 
 void BgLayer::update(float dt) {

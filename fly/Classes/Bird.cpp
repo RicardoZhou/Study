@@ -14,6 +14,11 @@ bool Bird::init() {
 	birdBody->setGravityEnable(false);
 	this->setPhysicsBody(birdBody);
 
+	//碰撞检测相关的掩码
+	birdBody->setCategoryBitmask(0x08);
+	birdBody->setCollisionBitmask(0x26);
+	birdBody->setContactTestBitmask(0x20);
+
 	Vector<SpriteFrame*> frames;
 	int frameSize = 9;
 	float totalTime = 0.6;
